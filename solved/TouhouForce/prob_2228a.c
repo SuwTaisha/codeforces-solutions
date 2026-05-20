@@ -1,62 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*CANT SOLVE THIS :SOB:*/
+int min(int a, int b)
+{
+    if (a < b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}
+
 int main()
 {
     int t;
     scanf("%d", &t);
-    int count[t];
-    for (int i = 0; i < t; i++)
+    int ans[t];
+    int temp = t;
+    while (t--)
     {
+
         int a;
-        int count_one = 0;
-        int count_two = 0;
-        count[i] = 0;
         scanf("%d", &a);
-        int b[a];
-        for (int j = 0; j < a; j++)
+        int c0 = 0, c1 = 0, c2 = 0;
+
+        for (int i = 0; i < a; i++)
         {
-            scanf("%d", &b[j]);
-            if (b[j] == 0)
+            int b;
+            scanf("%d", &b);
+            if (b == 0)
             {
-                count[i]++;
-                continue;
+                c0++;
             }
-            if (b[j] == 1)
+            else if (b == 1)
             {
-                count_one++;
+                c1++;
             }
             else
             {
-                count_two++;
+                c2++;
             }
-        }
+        };
+        int res = c0;
+        int pairs = min(c1, c2);
+        res += pairs;
+        c1 -= pairs;
+        c2 -= pairs;
 
-        if (count_one >= 3)
-        {
-            count[i] += count_one / 3;
-            count_one -= count_one / 3;
-        }
-        if (count_two >= 6)
-        {
-            count[i] += count_two / 6;
-            count_two -= count_two / 6;
-        }
+        res += c1 / 3;
+        res += c2 / 3;
+        ans[t] = res;
+    }
 
-        if (count_one < count_two)
-        {
-            count[i] += count_one;
-        }
-        else
-        {
-            count[i] += count_two;
-        }
-    };
-
-    for (int i = 0; i < t; i++)
-    {
-        printf("%d\n", count[i]);
+    while(temp--) {
+        printf("%d\n", ans[temp]);
     }
     return 0;
 }
