@@ -14,11 +14,11 @@ void reverse(char *str) {
 }
 
 int main() {
-    char word[100];
-    char word_2[100];
+    char word[200];
+    char word_2[200];
 
-    scanf("%99s", word);
-    scanf("%99s", word_2);
+    scanf("%199s", word);
+    scanf("%199s", word_2);
 
     reverse(word);
 
